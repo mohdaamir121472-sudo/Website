@@ -107,10 +107,35 @@ const FloatingNavbar: React.FC = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'videos', 'contact'];
+      const scrollPosition = window.scrollY + 100;
+
+      sections.forEach(sectionId => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetHeight = element.offsetHeight;
+          
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(sectionId);
+          }
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'nearest'
+      });
       setActiveSection(sectionId);
     }
   };
@@ -304,13 +329,31 @@ function App() {
               </p>
               <div className="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4 mb-8 md:mb-16 px-4">
                 <button 
-                  onClick={() => document.getElementById('videos')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => {
+                    const element = document.getElementById('videos');
+                    if (element) {
+                      element.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start',
+                        inline: 'nearest'
+                      });
+                    }
+                  }}
                   className="btn-enhanced btn-primary-enhanced rounded-lg w-full sm:w-auto text-glow-white"
                 >
                   View Work
                 </button>
                 <button 
-                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => {
+                    const element = document.getElementById('contact');
+                    if (element) {
+                      element.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start',
+                        inline: 'nearest'
+                      });
+                    }
+                  }}
                   className="btn-enhanced btn-secondary-enhanced rounded-lg w-full sm:w-auto text-glow-white"
                 >
                   Contact Me
