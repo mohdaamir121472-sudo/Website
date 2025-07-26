@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Play, Pause, Volume2, VolumeX, Maximize, Home, Instagram, Mail } from 'lucide-react';
 import FloatingIcons from "./components/FloatingIcons";
+import LoadingScreen from "./components/LoadingScreen";
 
 interface VideoPlayerProps {
   src: string;
@@ -175,6 +176,16 @@ const FloatingNavbar: React.FC = () => {
 };
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleLoadComplete = () => {
+    setIsLoading(false);
+  };
+
+  if (isLoading) {
+    return <LoadingScreen onLoadComplete={handleLoadComplete} />;
+  }
+
   const landscapeVideos = [
     {
       src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
