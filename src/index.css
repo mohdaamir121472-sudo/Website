@@ -67,6 +67,109 @@
   }
 }
 
+/* Slide up animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+.slide-up-delay-1 {
+  animation: slideUp 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.slide-up-delay-2 {
+  animation: slideUp 0.8s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+.slide-up-delay-3 {
+  animation: slideUp 0.8s ease-out 0.6s forwards;
+  opacity: 0;
+}
+
+/* Enhanced button styles */
+.btn-enhanced {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-enhanced:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+.btn-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-enhanced:hover::before {
+  left: 100%;
+}
+
+.btn-primary-enhanced {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 16px 32px;
+  font-size: 1.1rem;
+}
+
+.btn-primary-enhanced:hover {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.btn-secondary-enhanced {
+  background: transparent;
+  border: 2px solid #6b7280;
+  color: white;
+  font-weight: 600;
+  padding: 14px 30px;
+  font-size: 1.1rem;
+}
+
+.btn-secondary-enhanced:hover {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2), 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.btn-cta-enhanced {
+  background: linear-gradient(135deg, #ffffff, #f3f4f6);
+  color: #1f2937;
+  font-weight: 700;
+  padding: 18px 36px;
+  font-size: 1.2rem;
+  border: none;
+}
+
+.btn-cta-enhanced:hover {
+  background: linear-gradient(135deg, #f9fafb, #e5e7eb);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4), 0 0 20px rgba(255, 255, 255, 0.2);
+  color: #111827;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
